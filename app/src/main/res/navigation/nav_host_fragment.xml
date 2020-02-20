@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_host_fragment"
+    app:startDestination="@id/home2">
+
+    <fragment
+        android:id="@+id/home2"
+        android:name="com.mindvalleytask.view.home.PinBoardListPage"
+        android:label="Home"
+        tools:layout="@layout/pin_board_list">
+        <action
+            android:id="@+id/action_pinboard_to_detailsPage"
+            app:destination="@id/detailsPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsPage"
+        android:name="com.mindvalleytask.view.details.PinBoardItemDetailsPage"
+        android:label="Details Page"
+        tools:layout="@layout/pin_board_item_details_page_fragment">
+        <argument
+            android:name="pinBoardItem"
+            app:argType="com.mindvalleytask.model.BaseResponse" />
+        <action
+            android:id="@+id/action_detailsPage_to_userProfilePage"
+            app:destination="@id/userProfilePage" />
+    </fragment>
+    <fragment
+        android:id="@+id/userProfilePage"
+        android:name="com.mindvalleytask.view.profile.UserProfilePage"
+        android:label="User Profile Page"
+        tools:layout="@layout/fragment_user_profile_page">
+        <argument
+            android:name="profileLink"
+            app:argType="string" />
+    </fragment>
+</navigation>

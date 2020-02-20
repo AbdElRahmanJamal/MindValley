@@ -1,0 +1,2 @@
+include ':app', ':downloaderlibrary'
+rootProject.name='MindValleyTask'
