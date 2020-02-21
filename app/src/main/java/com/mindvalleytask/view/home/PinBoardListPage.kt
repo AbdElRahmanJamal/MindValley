@@ -8,18 +8,25 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.m.downloaderlibrary.downloadertypes.BaseFileDownloader
-import com.m.downloaderlibrary.downloadertypes.DataDownloadedFormatter
+import com.m.downloaderlibrary.cashingmanager.CashingManager
+import com.m.downloaderlibrary.cashingmanager.MemoryCashingFactory
+import com.m.downloaderlibrary.datadownloader.BaseFileDownloader
+import com.m.downloaderlibrary.datadownloader.DataDownloadedFormatter
+import com.m.downloaderlibrary.datadownloader.downloaderdatastore.localdatatstore.LocalReaderFromMemoryCash
+import com.m.downloaderlibrary.datadownloader.downloaderdatastore.remotdatatstore.RemoteDownloader
+import com.m.downloaderlibrary.datadownloader.downloaderrepository.DownloaderRepository
+import com.m.downloaderlibrary.downloadertypes.TextDownloader
+import com.m.downloaderlibrary.helper.DownloadDataType
 import com.m.downloaderlibrary.model.DownloadFileState
+import com.mindvalleytask.BASE_API
 import com.mindvalleytask.R
 import com.mindvalleytask.Utils.Companion.convertStringToBaseModel
-import com.mindvalleytask.data.BASE_API
-import com.mindvalleytask.data.DownloadJsonFile
 import com.mindvalleytask.model.BaseResponse
 import com.mindvalleytask.view.BaseScreenFragment
 import com.mindvalleytask.view.home.adapter.PinBoardItemClickLicener
 import com.mindvalleytask.view.home.adapter.PinBoardListAdapter
 import kotlinx.android.synthetic.main.pin_board_list.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 
 class PinBoardListPage : BaseScreenFragment(), PinBoardItemClickLicener {
@@ -29,12 +36,19 @@ class PinBoardListPage : BaseScreenFragment(), PinBoardItemClickLicener {
     private lateinit var pinBoardListPageViewModelFactory: PinBoardListPageViewModelFactory
     private lateinit var pinBoardListAdapter: PinBoardListAdapter
 
-    private val downloadJsonFile by lazy {
-        DownloadJsonFile(
-            DataDownloadedFormatter(
-                BaseFileDownloader(BASE_API)
-            )
-        )
+    private val cashingManager by lazy { CashingManager.getInstance(MemoryCashingFactory) }
+    private val baseDownloader by lazy { BaseFileDownloader(BASE_API) }
+    private val dataDownloadedFormatter by lazy { DataDownloadedFormatter(baseDownloader) }
+    private val remoteDownloader by lazy { RemoteDownloader(dataDownloadedFormatter, DownloadDataType.JSON, cashingManager) }
+    private val localReaderFromMemoryCash by lazy { LocalReaderFromMemoryCash(cashingManager, BASE_API) }
+    private val downloaderRepository by lazy {
+        DownloaderRepository(cashingManager, remoteDownloader, localReaderFromMemoryCash, BASE_API)
+    }
+
+
+
+    private val textDownloader by lazy {
+        TextDownloader(downloaderRepository)
     }
 
     override fun getLayoutId() = R.layout.pin_board_list
@@ -54,14 +68,13 @@ class PinBoardListPage : BaseScreenFragment(), PinBoardItemClickLicener {
         getDownloadDataState()
     }
 
+    @ExperimentalCoroutinesApi
     private fun getDownloadDataState() {
         viewModel.getDownloadedJson().observeForever {
             when (it) {
                 is DownloadFileState.LoadingState -> setLoadingIndicatorVisibility(VISIBLE)
                 is DownloadFileState.SuccessState -> {
-                    val responseList =
-                        convertStringToBaseModel(it.downloadFileResult.downloadedData as String) as List<BaseResponse>
-                    displayDataToPinBoardList(responseList)
+                    displayDataToPinBoardList(it.downloadedData as List<BaseResponse>)
                     displayScreen()
                 }
                 is DownloadFileState.ErrorState -> setLoadingIndicatorVisibility(GONE)
@@ -83,10 +96,10 @@ class PinBoardListPage : BaseScreenFragment(), PinBoardItemClickLicener {
     private fun initViewModel() {
 
         pinBoardListPageViewModelFactory =
-            PinBoardListPageViewModelFactory(downloadJsonFile)
+                PinBoardListPageViewModelFactory(textDownloader)
         viewModel = ViewModelProvider(
-            this,
-            pinBoardListPageViewModelFactory
+                this,
+                pinBoardListPageViewModelFactory
         ).get(PinBoardListPageViewModel::class.java)
     }
 
@@ -111,7 +124,7 @@ class PinBoardListPage : BaseScreenFragment(), PinBoardItemClickLicener {
     @SuppressLint("ShowToast")
     private fun showCashClearedSuccessfullyMessage() {
         Toast.makeText(this.context, resources.getString(R.string.clear_cache), Toast.LENGTH_LONG)
-            .show()
+                .show()
     }
 
     private fun displayDataToPinBoardList(responseList: List<BaseResponse>) {

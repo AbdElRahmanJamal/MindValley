@@ -1,11 +1,10 @@
-package com.m.downloaderlibrary.downloadertypes
+package com.m.downloaderlibrary.datadownloader
 
 import com.m.downloaderlibrary.helper.CANCEL_DOWNLOAD
 import com.m.downloaderlibrary.helper.EMPTY_RESPONSE
 import com.m.downloaderlibrary.helper.HelperMethods.Companion.isUrlValid
 import com.m.downloaderlibrary.helper.INVALID_URL
 import com.m.downloaderlibrary.helper.OPEN_CONNECTION_ERROR
-import com.m.downloaderlibrary.model.ContentURLResult
 import com.m.downloaderlibrary.model.DownloadFileState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -45,7 +44,7 @@ class BaseFileDownloader(var url: String) {
                     input.close()
                 }.onSuccess {
                     if (!isDownloadCanceled && byteArrayOutputStream.size() > 0) {
-                        emit(DownloadFileState.SuccessState(ContentURLResult(byteArrayOutputStream)))
+                        emit(DownloadFileState.SuccessState(byteArrayOutputStream))
                     } else {
                         emit(DownloadFileState.ErrorState(EMPTY_RESPONSE))
                     }

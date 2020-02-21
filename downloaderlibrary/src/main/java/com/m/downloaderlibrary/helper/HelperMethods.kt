@@ -12,7 +12,7 @@ class HelperMethods {
             return !(url == null || url.isEmpty())
         }
 
-        fun createBitmapFromByteArray(data: ByteArray): Bitmap? {
+        fun createBitmapFromByteArray(data: ByteArray): Bitmap {
             return BitmapFactory.decodeByteArray(data, 0, data.size)
         }
     }

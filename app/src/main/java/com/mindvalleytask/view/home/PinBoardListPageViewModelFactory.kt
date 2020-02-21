@@ -2,14 +2,15 @@ package com.mindvalleytask.view.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.mindvalleytask.data.DownloadJsonFile
+import com.m.downloaderlibrary.downloadertypes.TextDownloader
+
 
 class PinBoardListPageViewModelFactory(
-    private val downloadJsonFile: DownloadJsonFile
+        private val textDownloader: TextDownloader
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return PinBoardListPageViewModel(downloadJsonFile) as T
+        return PinBoardListPageViewModel(textDownloader) as T
     }
 }
