@@ -5,7 +5,7 @@ import android.util.LruCache
 object MemoryCashingFactory {
     private val maxMemory = (Runtime.getRuntime().maxMemory() / 1024).toInt()
     private val maxCacheSize = maxMemory / 8
-     val lruCache = LruCache<String, Any>(maxCacheSize)
+    val lruCache = LruCache<String, Any>(maxCacheSize)
 
     fun isDownloadedDataFoundInCashingManager(key: String): Boolean {
         return lruCache.get(key) != null
@@ -25,8 +25,10 @@ object MemoryCashingFactory {
 
     }
 
-    fun clearCashedData() {
-        lruCache.evictAll()
+    fun clearCashedData(): Boolean {
+        runCatching { lruCache.evictAll() }
+            .onSuccess { return true }
+        return false
     }
 
 }

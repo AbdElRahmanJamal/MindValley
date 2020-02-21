@@ -10,14 +10,11 @@ class PinBoardListPageViewModel(private val downloadJsonFile: DownloadJsonFile) 
 
     fun getDownloadedJson() = downloadJsonFile.getDownloadedJson()
 
-    fun clearCash() = liveData {
-        runCatching {
-            CashingManager.getInstance(MemoryCashingFactory).clearCashedData()
-        }.onSuccess {
-            emit(true)
-        }.onFailure { }
-        emit(false)
-    }
+    fun clearCash() =
+        liveData {
+            emit(CashingManager.getInstance(MemoryCashingFactory).clearCashedData())
+        }
+
 
 }
 

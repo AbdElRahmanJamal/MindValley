@@ -29,7 +29,7 @@ class CashingManager(private val memoryCashingFactory: MemoryCashingFactory) {
 
     }
 
-    fun clearCashedData() {
-        memoryCashingFactory.clearCashedData()
+    fun clearCashedData(): Boolean {
+       return memoryCashingFactory.clearCashedData()
     }
 }

@@ -1,7 +1,6 @@
 package com.mindvalleytask.data
 
 import androidx.lifecycle.MutableLiveData
-import com.m.downloaderlibrary.downloadertypes.BaseFileDownloader
 import com.m.downloaderlibrary.downloadertypes.DataDownloadedFormatter
 import com.m.downloaderlibrary.downloadertypes.TextDownloader
 import com.m.downloaderlibrary.model.DownloadFileState

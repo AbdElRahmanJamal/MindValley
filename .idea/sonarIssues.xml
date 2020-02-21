@@ -563,6 +563,41 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/com/mindvalleytask/LiveDataTestUtil.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/com/mindvalleytask/MainRule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/com/mindvalleytask/PinBoardItemDetailsPageViewModelTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/com/mindvalleytask/PinBoardLisrPageTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/com/mindvalleytask/PinBoardLisrPageViewModelTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/com/mindvalleytask/PinBoardListPageTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/com/mindvalleytask/PinBoardListViewModelTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/build.gradle">
           <value>
             <set />
@@ -744,6 +779,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/downloaderlibrary/src/test/java/com/m/downloaderlibrary/ImageDownloaderTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/test/java/com/m/downloaderlibrary/MainRule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/test/java/com/m/downloaderlibrary/TextDownloaderTest.kt">
           <value>
             <set />
           </value>
