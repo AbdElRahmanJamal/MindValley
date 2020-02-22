@@ -988,6 +988,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/test/java/com/m/downloaderlibrary/MockStaticExampleTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/test/java/com/m/downloaderlibrary/RemoteDownloaderTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/downloaderlibrary/src/test/java/com/m/downloaderlibrary/TextDownloaderTest.kt">
           <value>
             <set />

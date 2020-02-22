@@ -16,7 +16,8 @@ object MemoryCashingFactory {
     }
 
     fun putDownloadedDataIntoCash(key: String, data: Any) {
-        kotlin.runCatching {
+
+        runCatching {
             if (!isDownloadedDataFoundInCashingManager(key))
                 lruCache.put(key, data)
         }.onFailure {
@@ -27,7 +28,7 @@ object MemoryCashingFactory {
 
     fun clearCashedData(): Boolean {
         runCatching { lruCache.evictAll() }
-            .onSuccess { return true }
+                .onSuccess { return true }
         return false
     }
 

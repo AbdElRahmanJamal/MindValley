@@ -12,9 +12,11 @@ class LocalReaderFromMemoryCash {
     fun readDataFromCash(cashingManager: CashingManager, casedDataURL: String) {
 
         localData.postValue(DownloadFileState.LoadingState)
-        if (cashingManager.isDownloadedDataFoundInCashingManager(casedDataURL)) {
 
-            localData.postValue(DownloadFileState.SuccessState(cashingManager.getDownloadedDataFromCash(casedDataURL)))
+        if (cashingManager.getDownloadedDataFromCash(casedDataURL) != null &&
+                cashingManager.getDownloadedDataFromCash(casedDataURL) != "") {
+
+            localData.postValue(DownloadFileState.SuccessState(cashingManager.getDownloadedDataFromCash(casedDataURL)!!))
 
         } else {
             localData.postValue(DownloadFileState.ErrorState(DATA_NOT_FOUND_IN_CASH))

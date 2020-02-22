@@ -32,7 +32,7 @@ class RemoteDownloader(
     }
 
     @ExperimentalCoroutinesApi
-    suspend fun downloadDataFromServer(cashingManager: CashingManager, casedDataURL: String) {
+    private suspend fun downloadDataFromServer(cashingManager: CashingManager, casedDataURL: String) {
         getFormattedData().collect {
             when (it) {
 

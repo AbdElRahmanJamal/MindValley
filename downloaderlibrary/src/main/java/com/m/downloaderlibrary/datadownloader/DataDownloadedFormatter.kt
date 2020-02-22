@@ -28,7 +28,14 @@ class DataDownloadedFormatter(private val baseFileDownloader: BaseFileDownloader
 
                     is DownloadFileState.SuccessState ->
 
-                        emit(DownloadFileState.SuccessState(formatData(it.downloadedData, downloadDataType)))
+                        emit(
+                            DownloadFileState.SuccessState(
+                                formatData(
+                                    it.downloadedData,
+                                    downloadDataType
+                                )
+                            )
+                        )
                 }
             }
         }.distinctUntilChanged()
@@ -39,14 +46,17 @@ class DataDownloadedFormatter(private val baseFileDownloader: BaseFileDownloader
         val formattedByteArrayOutputStream = downloadFileResult as ByteArrayOutputStream
 
         return when (downloadDataType) {
-            DownloadDataType.JSON -> String(formattedByteArrayOutputStream.toByteArray(), StandardCharsets.UTF_8)
+            DownloadDataType.JSON -> String(
+                formattedByteArrayOutputStream.toByteArray(),
+                StandardCharsets.UTF_8
+            )
 
             DownloadDataType.IMAGE -> getBitmapFromDownloadedData(formattedByteArrayOutputStream.toByteArray())
         }
     }
 
-    private fun getBitmapFromDownloadedData(it: ByteArray): Bitmap {
-        return HelperMethods.createBitmapFromByteArray(it)
+    private fun getBitmapFromDownloadedData(data: ByteArray): Bitmap {
+        return HelperMethods.createBitmapFromByteArray(data)
     }
 
 }

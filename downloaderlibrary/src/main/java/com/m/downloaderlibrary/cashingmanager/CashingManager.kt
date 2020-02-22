@@ -8,19 +8,20 @@ class CashingManager(private val memoryCashingFactory: MemoryCashingFactory) {
         private val cashingManagerInstance: CashingManager? = null
 
         fun getInstance(lruCache: MemoryCashingFactory): CashingManager =
-            this.cashingManagerInstance ?: CashingManager(lruCache)
+                this.cashingManagerInstance ?: CashingManager(lruCache)
     }
 
     fun isDownloadedDataFoundInCashingManager(key: String): Boolean {
         return memoryCashingFactory.isDownloadedDataFoundInCashingManager(key)
     }
 
-    fun getDownloadedDataFromCash(key: String): Any {
+    fun getDownloadedDataFromCash(key: String): Any? {
         return memoryCashingFactory.getDownloadedDataFromCash(key)
     }
 
     fun putDownloadedDataIntoCash(key: String, data: Any) {
-        kotlin.runCatching {
+
+        runCatching {
             if (!isDownloadedDataFoundInCashingManager(key))
                 memoryCashingFactory.putDownloadedDataIntoCash(key, data)
         }.onFailure {
@@ -30,6 +31,6 @@ class CashingManager(private val memoryCashingFactory: MemoryCashingFactory) {
     }
 
     fun clearCashedData(): Boolean {
-       return memoryCashingFactory.clearCashedData()
+        return memoryCashingFactory.clearCashedData()
     }
 }
