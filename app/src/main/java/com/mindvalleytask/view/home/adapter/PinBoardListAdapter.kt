@@ -60,8 +60,8 @@ class PinBoardListAdapter(private val pinBoardItemClickListener: PinBoardItemCli
         val cashingManager by lazy { CashingManager.getInstance(MemoryCashingFactory) }
         val baseDownloader by lazy { BaseFileDownloader(item.urls.thumb) }
         val dataDownloadedFormatter by lazy { DataDownloadedFormatter(baseDownloader) }
-        val remoteDownloader by lazy { RemoteDownloader(dataDownloadedFormatter, DownloadDataType.IMAGE, cashingManager) }
-        val localReaderFromMemoryCash by lazy { LocalReaderFromMemoryCash(cashingManager, item.urls.thumb) }
+        val remoteDownloader by lazy { RemoteDownloader(dataDownloadedFormatter, DownloadDataType.IMAGE) }
+        val localReaderFromMemoryCash by lazy { LocalReaderFromMemoryCash() }
         val downloaderRepository by lazy {
             DownloaderRepository(cashingManager, remoteDownloader, localReaderFromMemoryCash, item.urls.thumb)
         }

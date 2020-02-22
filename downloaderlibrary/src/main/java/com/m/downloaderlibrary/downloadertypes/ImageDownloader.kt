@@ -25,19 +25,19 @@ class ImageDownloader(private val downloaderRepository: DownloaderRepository,
     }
 
     private fun onLoading() {
-        imageView?.apply {
+        imageView.apply {
             setBackgroundResource(placeHolderImage)
         }
     }
 
     private fun onSuccess(bitmap: Bitmap) {
-        imageView?.apply {
+        imageView.apply {
             setImageBitmap(bitmap)
         }
     }
 
     private fun onError() {
-        imageView?.apply {
+        imageView.apply {
             setBackgroundResource(errorImage)
         }
 

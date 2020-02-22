@@ -21,10 +21,11 @@ class PinBoardListPageViewModel(private val textDownloader: TextDownloader) : Vi
 
         textDownloader.downloadText().observeForever {
             when (it) {
-                is DownloadFileState.LoadingState, is DownloadFileState.ErrorState -> jsonState.value = it
+                is DownloadFileState.LoadingState, is DownloadFileState.ErrorState -> jsonState.postValue(it)
+
                 is DownloadFileState.SuccessState ->
-                    jsonState.value =
-                            DownloadFileState.SuccessState(Utils.convertStringToBaseModel(it.downloadedData as String) as List<BaseResponse>)
+                    jsonState.postValue(DownloadFileState.SuccessState(
+                            Utils.convertStringToBaseModel(it.downloadedData as String) as List<BaseResponse>))
             }
         }
         return jsonState

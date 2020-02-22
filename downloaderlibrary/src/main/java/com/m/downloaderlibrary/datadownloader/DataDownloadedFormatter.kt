@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.flow
 import java.io.ByteArrayOutputStream
 import java.nio.charset.StandardCharsets
 
-class DataDownloadedFormatter(val baseFileDownloader: BaseFileDownloader) {
+class DataDownloadedFormatter(private val baseFileDownloader: BaseFileDownloader) {
 
     lateinit var formatterDataFlow: Flow<DownloadFileState>
 

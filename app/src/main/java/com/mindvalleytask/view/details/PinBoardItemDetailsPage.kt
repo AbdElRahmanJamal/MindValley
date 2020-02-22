@@ -2,6 +2,7 @@ package com.mindvalleytask.view.details
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.m.downloaderlibrary.cashingmanager.CashingManager
 import com.m.downloaderlibrary.cashingmanager.MemoryCashingFactory
@@ -26,20 +27,22 @@ class PinBoardItemDetailsPage : BaseScreenFragment() {
     override fun getLayoutId() = R.layout.pin_board_item_details_page_fragment
     override fun getScreenTitle() = resources.getString(R.string.details_title)
 
+    @ExperimentalCoroutinesApi
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        setFragmentContentVisibility(View.VISIBLE)
-        setLoadingIndicatorVisibility(View.GONE)
-        getDateFromSafeArgs()
-        mapDataToViews()
+        lifecycleScope.launchWhenCreated {
+            setFragmentContentVisibility(View.VISIBLE)
+            setLoadingIndicatorVisibility(View.GONE)
+            getDateFromSafeArgs()
+            mapDataToViews()
 
-        btn_view_profile.setOnClickListener {
-            navigateToProfilePage()
+            btn_view_profile.setOnClickListener {
+                navigateToProfilePage()
+            }
+            downloadUserProfileImage()
         }
-        downloadUserProfileImage()
     }
-
 
     private fun getDateFromSafeArgs() {
         arguments?.let {
@@ -65,8 +68,8 @@ class PinBoardItemDetailsPage : BaseScreenFragment() {
         val cashingManager by lazy { CashingManager.getInstance(MemoryCashingFactory) }
         val baseDownloader by lazy { BaseFileDownloader(pinBoardItem.user.profile_image.large) }
         val dataDownloadedFormatter by lazy { DataDownloadedFormatter(baseDownloader) }
-        val remoteDownloader by lazy { RemoteDownloader(dataDownloadedFormatter, DownloadDataType.IMAGE, cashingManager) }
-        val localReaderFromMemoryCash by lazy { LocalReaderFromMemoryCash(cashingManager, pinBoardItem.user.profile_image.large) }
+        val remoteDownloader by lazy { RemoteDownloader(dataDownloadedFormatter, DownloadDataType.IMAGE) }
+        val localReaderFromMemoryCash by lazy { LocalReaderFromMemoryCash() }
         val downloaderRepository by lazy {
             DownloaderRepository(cashingManager, remoteDownloader, localReaderFromMemoryCash, pinBoardItem.user.profile_image.large)
         }

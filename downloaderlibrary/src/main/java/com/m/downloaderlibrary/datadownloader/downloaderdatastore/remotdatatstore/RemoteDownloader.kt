@@ -12,11 +12,9 @@ import kotlinx.coroutines.flow.collect
 class RemoteDownloader(
         private val dataDownloadedFormatter: DataDownloadedFormatter,
         private val downloadDownloadDataType: DownloadDataType,
-        private val cashingManager: CashingManager,
         private val IODispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
 
-    private val url by lazy { dataDownloadedFormatter.baseFileDownloader.url }
 
     var remoteData = MutableLiveData<DownloadFileState>()
 
@@ -27,14 +25,14 @@ class RemoteDownloader(
     }
 
     @ExperimentalCoroutinesApi
-    fun startDownloading() {
+    fun startDownloading(cashingManager: CashingManager, casedDataURL: String) {
         CoroutineScope(IODispatcher).launch {
-            downloadDataFromServer()
+            downloadDataFromServer(cashingManager, casedDataURL)
         }
     }
 
     @ExperimentalCoroutinesApi
-    suspend fun downloadDataFromServer() {
+    suspend fun downloadDataFromServer(cashingManager: CashingManager, casedDataURL: String) {
         getFormattedData().collect {
             when (it) {
 
@@ -42,7 +40,7 @@ class RemoteDownloader(
                     remoteData.postValue(it)
 
                 is DownloadFileState.SuccessState -> {
-                    cashingManager.putDownloadedDataIntoCash(url, it.downloadedData)
+                    cashingManager.putDownloadedDataIntoCash(casedDataURL, it.downloadedData)
                     remoteData.postValue(DownloadFileState.SuccessState(it.downloadedData))
                 }
             }

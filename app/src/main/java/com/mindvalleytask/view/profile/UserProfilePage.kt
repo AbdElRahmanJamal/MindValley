@@ -11,6 +11,7 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.mindvalleytask.R
 import com.mindvalleytask.view.BaseScreenFragment
 import kotlinx.android.synthetic.main.fragment_user_profile_page.*
@@ -29,8 +30,11 @@ class UserProfilePage : BaseScreenFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         getDateFromSafeArgs()
-        openProfilePage()
+        lifecycleScope.launchWhenCreated {
+            openProfilePage()
+        }
     }
 
     private fun getDateFromSafeArgs() {
@@ -46,6 +50,8 @@ class UserProfilePage : BaseScreenFragment() {
         val webSettings = profile_page_web_view.settings
         webSettings.javaScriptEnabled = true
         profile_page_web_view.webViewClient = object : WebViewClient() {
+
+            
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
                 setLoadingIndicatorVisibility(VISIBLE)
@@ -63,8 +69,6 @@ class UserProfilePage : BaseScreenFragment() {
                 setLoadingIndicatorVisibility(GONE)
                 setFragmentContentVisibility(VISIBLE)
             }
-
         }
     }
-
 }

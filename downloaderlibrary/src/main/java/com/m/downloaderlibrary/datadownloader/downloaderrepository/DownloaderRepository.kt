@@ -18,10 +18,10 @@ class DownloaderRepository(private val cashingManager: CashingManager,
     fun getDownloadedData(): MutableLiveData<DownloadFileState> {
 
         return if (cashingManager.isDownloadedDataFoundInCashingManager(cashedURL)) {
-            localReaderFromMemoryCash.readDataFromCash()
+            localReaderFromMemoryCash.readDataFromCash(cashingManager, cashedURL)
             localReaderFromMemoryCash.localData
         } else {
-            remoteDownloader.startDownloading()
+            remoteDownloader.startDownloading(cashingManager, cashedURL)
             remoteDownloader.remoteData
         }
 

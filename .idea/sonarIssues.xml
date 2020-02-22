@@ -598,6 +598,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/com/mindvalleytask/TestUtils.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/build.gradle">
           <value>
             <set />
@@ -629,6 +634,191 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/cashingmanager/TextCashingManager.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloader/BaseFileDownloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloader/DataDownloadedFormatter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloader/downloaderdatastore/localdatatstore/LocalReaderFromMemoryCash.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloader/downloaderdatastore/remotdatatstore/RemoteDownloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloader/downloaderrepository/DownloaderRepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/BaseFileDownloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/DataDownloadedFormatter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/Downloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/ImageDownloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloaderdatastore/localdatatstore/LocalReaderFromMemoryCash.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloaderdatastore/remotdatatstore/RemoteDownloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloaderdatastore/remotdatatstore/RemoteImageRemoteDownloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloaderdatastore/remotdatatstore/RemoteTextRemoteDownloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloaderrepository/DownloaderRepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloaderrepository/Downloaderrepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloaderrepository/ImageDownloaderRepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloaderrepository/TextDownloaderRepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloadertypes/Downloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloadertypes/ImageDownloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloadertypesdatastore/localdatatstore/LocalDownloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloadertypesdatastore/localdatatstore/LocalImageDownloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloadertypesdatastore/localdatatstore/LocalImageReaderFromMemoryCash.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloadertypesdatastore/localdatatstore/LocalReaderFromMemoryCash.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloadertypesdatastore/localdatatstore/LocalTextDownloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloadertypesdatastore/localdatatstore/LocalTextReaderFromMemoryCash.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloadertypesdatastore/remotdatatstore/Downloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloadertypesdatastore/remotdatatstore/ImageDownloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloadertypesdatastore/remotdatatstore/RemoteDownloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloadertypesdatastore/remotdatatstore/RemoteImageDownloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloadertypesdatastore/remotdatatstore/RemoteImageRemoteDownloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloadertypesdatastore/remotdatatstore/RemoteTextDownloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloadertypesdatastore/remotdatatstore/RemoteTextRemoteDownloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloadertypesdatastore/remotdatatstore/TextDownloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloadertypesdatastore/remotrepository/ImageDownloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloadertypesdatastore/remotrepository/TextDownloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloadertypesrepository/remotrepository/ImageDownloader.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/datadownloadert/downloadertypesrepository/remotrepository/TextDownloader.kt">
           <value>
             <set />
           </value>
@@ -699,6 +889,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/downloadertypes/ImageDownloaderDataFormatterUseCase.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/main/java/com/m/downloaderlibrary/downloadertypes/JsonDownloader.kt">
           <value>
             <set />
           </value>
@@ -779,6 +974,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/downloaderlibrary/src/test/java/com/m/downloaderlibrary/ImageDownloaderTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/downloaderlibrary/src/test/java/com/m/downloaderlibrary/LocalReaderFromMemoryTest.kt">
           <value>
             <set />
           </value>

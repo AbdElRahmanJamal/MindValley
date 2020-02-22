@@ -5,16 +5,19 @@ import com.m.downloaderlibrary.cashingmanager.CashingManager
 import com.m.downloaderlibrary.helper.DATA_NOT_FOUND_IN_CASH
 import com.m.downloaderlibrary.model.DownloadFileState
 
-class LocalReaderFromMemoryCash(private val cashingManager: CashingManager, private val casedDataURL: String) {
+class LocalReaderFromMemoryCash {
 
     var localData = MutableLiveData<DownloadFileState>()
 
-    fun readDataFromCash() {
-        localData.value = DownloadFileState.LoadingState
+    fun readDataFromCash(cashingManager: CashingManager, casedDataURL: String) {
+
+        localData.postValue(DownloadFileState.LoadingState)
         if (cashingManager.isDownloadedDataFoundInCashingManager(casedDataURL)) {
-            localData.value = DownloadFileState.SuccessState(cashingManager.getDownloadedDataFromCash(casedDataURL))
+
+            localData.postValue(DownloadFileState.SuccessState(cashingManager.getDownloadedDataFromCash(casedDataURL)))
+
         } else {
-            localData.value = DownloadFileState.ErrorState(DATA_NOT_FOUND_IN_CASH)
+            localData.postValue(DownloadFileState.ErrorState(DATA_NOT_FOUND_IN_CASH))
         }
     }
 

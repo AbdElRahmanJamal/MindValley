@@ -6,6 +6,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.m.downloaderlibrary.cashingmanager.CashingManager
@@ -18,9 +19,7 @@ import com.m.downloaderlibrary.datadownloader.downloaderrepository.DownloaderRep
 import com.m.downloaderlibrary.downloadertypes.TextDownloader
 import com.m.downloaderlibrary.helper.DownloadDataType
 import com.m.downloaderlibrary.model.DownloadFileState
-import com.mindvalleytask.BASE_API
 import com.mindvalleytask.R
-import com.mindvalleytask.Utils.Companion.convertStringToBaseModel
 import com.mindvalleytask.model.BaseResponse
 import com.mindvalleytask.view.BaseScreenFragment
 import com.mindvalleytask.view.home.adapter.PinBoardItemClickLicener
@@ -28,6 +27,7 @@ import com.mindvalleytask.view.home.adapter.PinBoardListAdapter
 import kotlinx.android.synthetic.main.pin_board_list.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+const val BASE_API = "https://pastebin.com/raw/wgkJgazE"
 
 class PinBoardListPage : BaseScreenFragment(), PinBoardItemClickLicener {
 
@@ -39,12 +39,11 @@ class PinBoardListPage : BaseScreenFragment(), PinBoardItemClickLicener {
     private val cashingManager by lazy { CashingManager.getInstance(MemoryCashingFactory) }
     private val baseDownloader by lazy { BaseFileDownloader(BASE_API) }
     private val dataDownloadedFormatter by lazy { DataDownloadedFormatter(baseDownloader) }
-    private val remoteDownloader by lazy { RemoteDownloader(dataDownloadedFormatter, DownloadDataType.JSON, cashingManager) }
-    private val localReaderFromMemoryCash by lazy { LocalReaderFromMemoryCash(cashingManager, BASE_API) }
+    private val remoteDownloader by lazy { RemoteDownloader(dataDownloadedFormatter, DownloadDataType.JSON) }
+    private val localReaderFromMemoryCash by lazy { LocalReaderFromMemoryCash() }
     private val downloaderRepository by lazy {
         DownloaderRepository(cashingManager, remoteDownloader, localReaderFromMemoryCash, BASE_API)
     }
-
 
 
     private val textDownloader by lazy {
@@ -54,13 +53,16 @@ class PinBoardListPage : BaseScreenFragment(), PinBoardItemClickLicener {
     override fun getLayoutId() = R.layout.pin_board_list
     override fun getScreenTitle() = resources.getString(R.string.home_title)
 
+    @ExperimentalCoroutinesApi
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        onViewStarted()
-        onClearButtonClicked()
+        lifecycleScope.launchWhenCreated {
+            onViewStarted()
+            onClearButtonClicked()
+        }
     }
 
+    @ExperimentalCoroutinesApi
     private fun onViewStarted() {
         initRecView()
         initViewModel()
@@ -70,18 +72,22 @@ class PinBoardListPage : BaseScreenFragment(), PinBoardItemClickLicener {
 
     @ExperimentalCoroutinesApi
     private fun getDownloadDataState() {
-        viewModel.getDownloadedJson().observeForever {
-            when (it) {
-                is DownloadFileState.LoadingState -> setLoadingIndicatorVisibility(VISIBLE)
-                is DownloadFileState.SuccessState -> {
-                    displayDataToPinBoardList(it.downloadedData as List<BaseResponse>)
-                    displayScreen()
+
+        with(viewModel) {
+            getDownloadedJson().observeForever {
+                when (it) {
+                    is DownloadFileState.LoadingState -> setLoadingIndicatorVisibility(VISIBLE)
+                    is DownloadFileState.SuccessState -> {
+                        displayDataToPinBoardList(it.downloadedData as List<BaseResponse>)
+                        displayScreen()
+                    }
+                    is DownloadFileState.ErrorState -> setLoadingIndicatorVisibility(GONE)
                 }
-                is DownloadFileState.ErrorState -> setLoadingIndicatorVisibility(GONE)
             }
         }
     }
 
+    @ExperimentalCoroutinesApi
     private fun handleSwipeToRefresh() {
         if (pin_board_swipe_to_refresh.isRefreshing)
             pin_board_swipe_to_refresh.isRefreshing = false
